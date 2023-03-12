@@ -1,6 +1,7 @@
 package com.zennyel.commands;
 
 import com.zennyel.SAO;
+import com.zennyel.player.Character;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -28,7 +29,7 @@ public class AddLevel implements CommandExecutor {
             return true;
         }
 
-        com.zennyel.player.Player player = SAO.getPlugin(SAO.class).getPlayer(target.getUniqueId());
+        Character player = SAO.getPlugin(SAO.class).getPlayer(target.getUniqueId());
 
         String operation = args[2];
         int quantity = Integer.parseInt(args[1]);

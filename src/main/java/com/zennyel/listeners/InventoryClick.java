@@ -1,20 +1,15 @@
 package com.zennyel.listeners;
 
 import com.zennyel.SAO;
-import org.bukkit.Bukkit;
+import com.zennyel.player.Character;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 
 import org.bukkit.event.inventory.InventoryClickEvent;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Consumer;
 
 public class InventoryClick implements Listener {
 
@@ -25,7 +20,7 @@ public class InventoryClick implements Listener {
         }
 
         Player player = (Player) event.getWhoClicked();
-        com.zennyel.player.Player p = SAO.getPlugin(SAO.class).getPlayer(player.getUniqueId());
+        Character p = SAO.getPlugin(SAO.class).getPlayer(player.getUniqueId());
 
         if (!event.getView().getTitle().equalsIgnoreCase("§6Menu de Status")) {
             return;
@@ -44,21 +39,23 @@ public class InventoryClick implements Listener {
 
         Material itemType = event.getCurrentItem().getType();
         switch (itemType) {
+            case PLAYER_HEAD:
+                break;
             case DIAMOND_SWORD:
-                p.upStrength();
-                player.sendMessage("§6§lParabéns, você melhorou sua força!");
+                p.upStrength(player);
+                player.sendMessage("§6Parabéns, você melhorou sua força!");
                 break;
             case SHIELD:
-                p.upDexterity();
-                player.sendMessage("§6§lParabéns, você melhorou sua destreza!");
+                p.upDexterity(player);
+                player.sendMessage("§6Parabéns, você melhorou sua destreza!");
                 break;
             case LEATHER_BOOTS:
-                p.upAgility();
-                player.sendMessage("§6§lParabéns, você melhorou sua agilidade!");
+                p.upAgility(player);
+                player.sendMessage("§6Parabéns, você melhorou sua agilidade!");
                 break;
             case GOLDEN_APPLE:
-                p.upHealth();
-                player.sendMessage("§6§lParabéns, você melhorou sua vida!");
+                p.upHealth(player);
+                player.sendMessage("§6Parabéns, você melhorou sua vida!");
                 break;
         }
 

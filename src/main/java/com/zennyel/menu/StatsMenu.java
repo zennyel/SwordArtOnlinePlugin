@@ -1,5 +1,5 @@
 package com.zennyel.menu;
-import com.zennyel.player.Player;
+import com.zennyel.player.Character;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -11,18 +11,22 @@ import java.util.List;
 public class StatsMenu {
     private final Inventory inventory;
 
-    public StatsMenu(Inventory inventory, com.zennyel.player.Player player) {
+    public StatsMenu(Inventory inventory, Character player) {
         this.inventory = inventory;
         addItems(player);
     }
 
-    private void addItems(Player player) {
+    public void updateItems(Character player){
+        addItems(player);
+    }
+
+    private void addItems(Character player) {
         addCenteredItem(new ItemStack(Material.DIAMOND_SWORD), "§4§lFORÇA", "§7Clique para melhorar!", 1 + 9);
         addCenteredItem(new ItemStack(Material.SHIELD), "§8§lDESTREZA", "§7Clique para melhorar!", 3 + 9);
         addCenteredItem(new ItemStack(Material.GOLDEN_APPLE), "§a§lVIDA", "§7Clique para melhorar!", 5 + 9);
         addCenteredItem(new ItemStack(Material.LEATHER_BOOTS), "§e§lAGILIDADE", "§7Clique para melhorar!", 7 + 9);
         List<String> lore = new ArrayList<>();
-        lore.add("§7§lLEVEL: " + player.getLevel());
+        lore.add("§7LEVEL: " + (int) player.getLevel());
         lore.add("§7FORÇA: " + player.getStrength());
         lore.add("§7AGILIDADE: "+ player.getAgility());
         lore.add("§7DESTREZA: " + player.getDexterity());
