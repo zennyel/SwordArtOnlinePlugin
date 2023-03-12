@@ -9,5 +9,3 @@ commands:
     description: abre o menu de habilidades
   addlevel:
     description: adiciona niveis ao jogador
-  addpoints:
-    description: adiciona pontos ao jogador

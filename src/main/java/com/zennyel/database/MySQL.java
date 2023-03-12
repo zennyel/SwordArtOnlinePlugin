@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import com.zennyel.player.Player;
+import com.zennyel.player.Character;
 import com.zennyel.player.Skill;
 import com.zennyel.player.SkillType;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -96,7 +96,7 @@ public class MySQL {
     }
 
 
-    public void insertPlayer(Player player, UUID playerId) {
+    public void insertPlayer(Character player, UUID playerId) {
         Connection conn = null;
         PreparedStatement stmt = null;
 
@@ -156,7 +156,7 @@ public class MySQL {
 
         try {
             conn = getConnection();
-            String sql = "INSERT INTO skills (player_id, name, level) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO skills (id, name, level) VALUES (?, ?, ?)";
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, playerId.toString());
             stmt.setString(2, skill.getName());
@@ -175,7 +175,7 @@ public class MySQL {
         }
     }
 
-    public Player getPlayer(UUID playerId) {
+    public Character getPlayer(UUID playerId) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -195,7 +195,7 @@ public class MySQL {
                 int health = rs.getInt("health");
                 int points = rs.getInt("points");
                 List<Skill> skills = getSkills(playerId);
-                Player player = new Player(level, agility, dexterity, strength, health, skills);
+                Character player = new Character(level, agility, dexterity, strength, health, skills);
                 player.setPoints(points);
                 return player;
             }

@@ -1,4 +1,5 @@
 package com.zennyel.menu;
+
 import com.zennyel.player.Character;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
@@ -8,33 +9,19 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StatsMenu {
+public class MainMenu {
+
     private final Inventory inventory;
 
-    public StatsMenu(Inventory inventory, Character player) {
+    public MainMenu(Inventory inventory, Character character) {
         this.inventory = inventory;
-        addItems(player);
+        addItems(character);
     }
 
-    public void updateItems(Character player){
-        addItems(player);
+    public void addItems(Character character){
+        addCenteredItem(new ItemStack(Material.PLAYER_HEAD), "§6Menu de Status", "§7Clique para acessar", 11);
+        addCenteredItem(new ItemStack(Material.NETHERITE_SWORD), "§6Menu de Skills", "§7Clique para acessar", 13);
     }
-
-    private void addItems(Character player) {
-        addCenteredItem(new ItemStack(Material.DIAMOND_SWORD), "§4§lFORÇA", "§7Clique para melhorar!", 1 + 9);
-        addCenteredItem(new ItemStack(Material.SHIELD), "§8§lDESTREZA", "§7Clique para melhorar!", 3 + 9);
-        addCenteredItem(new ItemStack(Material.GOLDEN_APPLE), "§a§lVIDA", "§7Clique para melhorar!", 5 + 9);
-        addCenteredItem(new ItemStack(Material.LEATHER_BOOTS), "§e§lAGILIDADE", "§7Clique para melhorar!", 7 + 9);
-        List<String> lore = new ArrayList<>();
-        lore.add("§7LEVEL: " + (int) player.getLevel());
-        lore.add("§7FORÇA: " + player.getStrength());
-        lore.add("§7AGILIDADE: "+ player.getAgility());
-        lore.add("§7DESTREZA: " + player.getDexterity());
-        lore.add("§7VIDA: " + player.getHealth());
-        lore.add("§7PONTOS: " + player.getPoints());
-        addCenteredItem(new ItemStack(Material.PLAYER_HEAD), "§5§lPERFIL", lore, 26);
-    }
-
     private void addCenteredItem(ItemStack itemStack, String displayName, String lore, int slot) {
         ItemMeta meta = itemStack.getItemMeta();
         meta.setDisplayName(displayName);
@@ -78,4 +65,6 @@ public class StatsMenu {
             inventory.setItem(slot, item);
         }
     }
+
+
 }

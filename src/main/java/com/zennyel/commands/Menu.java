@@ -1,7 +1,9 @@
 package com.zennyel.commands;
 
 import com.zennyel.SAO;
+import com.zennyel.menu.MainMenu;
 import com.zennyel.menu.StatsMenu;
+import com.zennyel.player.Character;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -10,6 +12,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
 public class Menu implements CommandExecutor {
+
+    private StatsMenu stats;
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -20,10 +24,15 @@ public class Menu implements CommandExecutor {
         }
 
         Player player = (Player) sender;
-        com.zennyel.player.Player p = SAO.getPlugin(SAO.class).getPlayer(player.getUniqueId());
-        Inventory menu = Bukkit.createInventory(null, 27, "§6Menu de Status");
-        new StatsMenu(menu, p);
+        Character p = SAO.getPlugin(SAO.class).getPlayer(player.getUniqueId());
+        Inventory menu = Bukkit.createInventory(null, 27, "§6Menu Principal");
+        new MainMenu(menu, p);
         player.openInventory(menu);
         return true;
     }
+
+    public StatsMenu getStats() {
+        return stats;
+    }
+
 }

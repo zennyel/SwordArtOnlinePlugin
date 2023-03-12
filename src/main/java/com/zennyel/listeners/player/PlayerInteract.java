@@ -1,4 +1,4 @@
-package com.zennyel.listeners;
+package com.zennyel.listeners.player;
 
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
