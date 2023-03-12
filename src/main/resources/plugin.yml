@@ -1,0 +1,13 @@
+name: SwordArtOnlinePlugin
+version: '${project.version}'
+main: com.zennyel.SAO
+api-version: 1.19
+authors: [Zennyel]
+description: an sword art online plugin project
+commands:
+  menu:
+    description: abre o menu de habilidades
+  addlevel:
+    description: adiciona niveis ao jogador
+  addpoints:
+    description: adiciona pontos ao jogador
