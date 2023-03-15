@@ -5,3 +5,9 @@ MySQL:
   username: root
   password: vertrigo
   table: player_db
+PlayerStats:
+  maxAgi: 200
+  maxHealth: 200
+  maxDex: 200
+  maxStr: 200
+  maxLevel: 200

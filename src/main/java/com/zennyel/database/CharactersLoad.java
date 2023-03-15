@@ -2,6 +2,7 @@ package com.zennyel.database;
 
 import com.zennyel.SAO;
 import com.zennyel.player.Character;
+import com.zennyel.player.PlayerAPI;
 import org.bukkit.entity.Player;
 
 public class CharactersLoad {
@@ -10,12 +11,14 @@ public class CharactersLoad {
     private Player player;
     private Character character;
     private SAO instance;
+    private PlayerAPI playerAPI;
 
 
     public CharactersLoad(MySQL sql, Player player){
         this.sql = sql;
         this.player = player;
         this.instance = SAO.getPlugin(SAO.class);
+        this.playerAPI = getInstance().getPlayerAPI();
         loadCharacters();
     }
 
@@ -28,12 +31,12 @@ public class CharactersLoad {
 
     public void loadCharacters(){
         if(isRegistered()){
-            getInstance().loadCharacter(player);
+            playerAPI.loadCharacter(player);
             return;
         }
-        character = getInstance().createCharacter(player);
+        character = playerAPI.createCharacter(player);
         getSql().insertPlayer(character, player.getUniqueId());
-        getInstance().loadCharacter(player);
+        playerAPI.loadCharacter(player);
     }
 
     public SAO getInstance() {
@@ -59,4 +62,6 @@ public class CharactersLoad {
     public void setSql(MySQL sql) {
         this.sql = sql;
     }
+
+
 }
